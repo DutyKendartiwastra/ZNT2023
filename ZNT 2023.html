@@ -101,6 +101,12 @@
         zoom:12,
         center:[117.46917675050003,0.11673644470944267]
       });
+      // Gonta-ganti basemap
+      const toggle = new BasemapToggle({
+          view: View,
+          nextBasemap: "hybrid"
+        });
+        View.ui.add(toggle, "bottom-left");
       }
      )
     </script>
