@@ -25,11 +25,22 @@
     <script>
      require([
      "esri/Map",
-     "esri/views/MapView"
+     "esri/views/MapView",
+     "esri/layers/GeoJSONLayer",
+     "esri/widgets/BasemapToggle"
      ],(
       Map,
-      MapView
+      MapView,
+      GeoJSONLayer,
+      BasemapToggle
       )=>{
+      //Insert SHP ZONA 2023
+      const Zona2023=new GeoJSONLayer({
+        url:"https://raw.githubusercontent.com/DutyKendartiwastra/SIK3/main/SatimpoLonlat.geojson",
+        popupTemplate : popupLayer_K3_Satimpo,
+        renderer:renderer_K3_Satimpo
+      });
+      //Insert SHP Sample 2023
       // Insert Basemap
         const map = new Map({
         basemap:"streets-relief-vector"
