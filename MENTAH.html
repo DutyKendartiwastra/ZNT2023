@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi K3 Backlog</title>
+</head>
+<body>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.24/esri/themes/light/main.css"/>
+    <script src="https://js.arcgis.com/4.24/"></script>
+    <script>src="https://code.jquery.com/jquery-3.6.1.min.js"</script>
+    <!-- Setting Halaman Full Screen -->
+    <style>
+     html,
+     body,
+     #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <!-- Mulai Coding Javascript -->
+    <script>
+     require([
+     "esri/Map",
+     "esri/views/MapView"
+     ],(
+      Map,
+      MapView
+      )=>{
+      // Insert Basemap
+        const map = new Map({
+        basemap:"streets-relief-vector"
+      });
+      // Menampilkan Map ke Bodi HTML
+      const View = new MapView({
+        container: "viewDiv",
+        map: map,
+        zoom:12,
+        center:[117.46917675050003,0.11673644470944267]
+      });
+      }
+     )
+    </script>
+    <body>
+      <div id="viewDiv"></div>
+    </body>
+</body>
+</html>
