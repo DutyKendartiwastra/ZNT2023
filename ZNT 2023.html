@@ -34,16 +34,40 @@
       GeoJSONLayer,
       BasemapToggle
       )=>{
+      //Simbologi Sample 2023
+      let renderer_Sample2023 = {
+        type: "simple",  // autocasts as new SimpleRenderer()
+        symbol: {
+        type: "simple-marker",  // autocasts as new SimpleMarkerSymbol()
+          size: 12,
+          color: "orange",
+          outline: {  // autocasts as new SimpleLineSymbol()
+          width: 0.5,
+          color: "white"
+          }
+      }};
+      // Pop Up Template Sample 2023
+      const popup_Sample2023 = {
+        title :"Nomor Entri {Nomor Entry}",
+        content : "<li><b>Sumber Informasi</b> : {Sumber Informasi}</li>"
+      };
       //Insert SHP ZONA 2023
       const Zona2023=new GeoJSONLayer({
-        url:"https://raw.githubusercontent.com/DutyKendartiwastra/ZNT2023/main/Zona_2023.geojson",
+        url:"https://raw.githubusercontent.com/DutyKendartiwastra/ZNT2023/main/Zona_lonlat_2023.geojson",
         //renderer:renderer_Zona2023
+      });
+      //Insert SHP Sample 2023
+      const Sample023=new GeoJSONLayer({
+        url:"https://raw.githubusercontent.com/DutyKendartiwastra/ZNT2023/main/Sample_lonlat_2023.geojson",
+        popupTemplate:popup_Sample2023,
+        renderer:renderer_Sample2023
       });
       // Insert Basemap
         const map = new Map({
         basemap:"streets-relief-vector"
       });
       map.add(Zona2023);
+      map.add(Sample023);
       // Menampilkan Map ke Bodi HTML
       const View = new MapView({
         container: "viewDiv",
