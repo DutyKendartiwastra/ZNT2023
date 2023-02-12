@@ -34,17 +34,66 @@
       GeoJSONLayer,
       BasemapToggle
       )=>{
+      //Simbologi Zona 2023
+      const simbol_Zona2023 = {
+          type: "simple-fill",
+          color:[232, 217, 40, 0],
+          outline: {
+            color: [231, 152, 228, 1],
+            width: "1px",
+            style: "solid"
+          }
+        };
+      const renderer_Zona2023 = {
+          type: "simple",
+          title:"K3_Satimpo",
+          symbol: simbol_Zona2023}
+      //Label Sample 2023
+      const labelClass_Sample20223 = {
+        symbol: {
+          type: "text",
+          color: "black",
+          font: {
+            family: "Avenir Next LT Pro Regular",
+            size: 8,
+            weight: "normal"
+          }
+        },
+        labelPlacement: "above-center",
+        labelExpressionInfo: {
+          expression: "$feature.Nomor Entry"
+        },
+        minScale: 50000,
+        maxScale: 0
+      };
+      //Simbologi Point Sample 2023
+      let iconSymbolRenderer = {
+        type: "simple",  // autocasts as new SimpleRenderer()
+        symbol: {
+        type: "simple-marker",  // autocasts as new SimpleMarkerSymbol()
+          size: 12,
+          color: "orange",
+          outline: {  // autocasts as new SimpleLineSymbol()
+          width: 0.5,
+          color: "white"
+          }
+      }};
       //Insert SHP ZONA 2023
       const Zona2023=new GeoJSONLayer({
-        url:"https://raw.githubusercontent.com/DutyKendartiwastra/SIK3/main/SatimpoLonlat.geojson",
-        popupTemplate : popupLayer_K3_Satimpo,
-        renderer:renderer_K3_Satimpo
+        url:"https://raw.githubusercontent.com/DutyKendartiwastra/ZNT2023/main/Zona_2023.geojson",
+        renderer:renderer_Zona2023
       });
       //Insert SHP Sample 2023
+      const Sample2023=new GeoJSONLayer({
+        url:"https://raw.githubusercontent.com/DutyKendartiwastra/ZNT2023/main/Zona_2023_Joined_FIX.geojson",
+        renderer:iconSymbolRenderer
+      });
       // Insert Basemap
         const map = new Map({
         basemap:"streets-relief-vector"
       });
+      map.add(Zona2023);
+      map.add(Sample2023);
       // Menampilkan Map ke Bodi HTML
       const View = new MapView({
         container: "viewDiv",
