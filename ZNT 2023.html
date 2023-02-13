@@ -68,7 +68,25 @@
                     "<li><b>Lebar Depan (m)</b> : {Lebar Depan (m)}</li>"+
                     "<li><b>Panjang Kebelakang (m)</b> : {Panjang Kebelakang (m)}</li>"+
                     "<li><b>Bentuk Tanah</b> : {Bentuk Tanah}</li>"+
-                  "<img src='{Foto}'>"
+                  "<img src='{Foto}'>",
+                [
+                {
+                // It is also possible to set the fieldInfos outside of the content
+                // directly in the popupTemplate. If no fieldInfos is specifically set
+                // in the content, it defaults to whatever may be set within the popupTemplate.
+                type: "fields", // FieldsContentElement
+                fieldInfos: [
+                  {
+                    fieldName: "Bentuk Tanah",
+                    visible: true,
+                    label: "Bentuknya Tanah",
+                    format: {
+                      places: 0,
+                      digitSeparator: true
+                    }
+                  }
+                ]}
+                ]
       };
       //Insert SHP ZONA 2023
       const Zona2023=new GeoJSONLayer({
