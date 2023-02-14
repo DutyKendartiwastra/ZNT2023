@@ -34,14 +34,45 @@
       GeoJSONLayer,
       BasemapToggle
       )=>{
+      //Membuat Label Class Zona
+      const labelClass = {
+        symbol: {
+          type: "text",
+          color: "Black",
+          font: {
+            family: "Avenir Next LT Pro Regular",
+            size: 12,
+            weight: "bold"
+          }
+        },
+        labelPlacement: "above-center",
+        labelExpressionInfo: {
+          expression: "$feature.RPBULAT"
+        },
+        minScale: 9000,
+        maxScale: 0
+      };
+      //Simbologi Zona
+      const defaultSym2 = {
+          type: "simple-fill",
+          color:[232, 217, 40, 0],
+          outline: {
+            color: [77, 76, 75, 1],
+            width: "2px",
+            style: "short-dash-dot-dot"
+          }};
+      const renderer3 = {
+          type: "simple",
+          title:"Batas Administrasi",
+          symbol: defaultSym2}
       //Simbologi Sample 2023
       let renderer_Sample2023 = {
-        type: "simple",  // autocasts as new SimpleRenderer()
+        type: "simple",
         symbol: {
-        type: "simple-marker",  // autocasts as new SimpleMarkerSymbol()
+        type: "simple-marker",  
           size: 12,
           color: "orange",
-          outline: {  // autocasts as new SimpleLineSymbol()
+          outline: {  
           width: 0.5,
           color: "white"
           }
@@ -49,7 +80,7 @@
       // Pop Up Template Sample 2023
       const popup_Sample2023 = {
         title :"Nomor Entri {Nomor Entry}",
-        content:
+        content://"<img src='{Foto}'>"+
               [
               {
                 type: "fields",
@@ -69,7 +100,223 @@
                   {
                     fieldName: "Nama Surveyor",
                     label: "Nama Surveyor"
-                  }
+                  },
+                  {
+                    fieldName: "Tanggal Pelaksanaan",
+                    label: "Tanggal Pelaksanaan"
+                  },
+                  {
+                    fieldName: "Jenis",
+                    label: "Bangunan (B)/Ruko(R)/ Tanah Kosong (TK)"
+                  },
+                  {
+                    fieldName: "Alamat",
+                    label: "Alamat"
+                  },
+                  {
+                    fieldName: "Kelurahan",
+                    label: "Kelurahan"
+                  },
+                  {
+                    fieldName: "Kencamatan",
+                    label: "Kecamatan"
+                  },
+                  {
+                    fieldName: "X",
+                    label: "Koordinat X"
+                  },
+                  {
+                    fieldName: "Y",
+                    label: "Koordinat Y"
+                  },
+                  {
+                    fieldName: "Status Kepemilikan",
+                    label: "Status Kepemilikan"
+                  },
+                  {
+                    fieldName: "Jenis Data",
+                    label: "Jenis Data"
+                  },
+                  {
+                    fieldName: "Tanggal Penawaran/ Transaksi",
+                    label: "Tanggal Penawaran/ Transaksi"
+                  },
+                  {
+                    fieldName: "Harga Penawaran/ Transaksi (Rp.)",
+                    label: "Harga Penawaran/ Transaksi (Rp.)"
+                  },
+                  {
+                    fieldName: "Luas tanah (m2)",
+                    label: "Luas tanah (m2)"
+                  },
+                  {
+                    fieldName: "Lebar Depan (m)",
+                    label: "Lebar Depan (m)"
+                  },
+                  {
+                    fieldName: "Panjang Kebelakang (m)",
+                    label: "Panjang Kebelakang (m)"
+                  },
+                  {
+                    fieldName: "Bentuk Tanah",
+                    label: "Bentuk Tanah"
+                  },
+                  {
+                    fieldName: "Elevasi dari Jalan",
+                    label: "Elevasi dari Jalan"
+                  },
+                  {
+                    fieldName: "Letak Tanah",
+                    label: "Letak Tanah"
+                  },
+                  {
+                    fieldName: "Kelas Jalan",
+                    label: "Kelas Jalan"
+                  },
+                  {
+                    fieldName: "Lebar Jalan",
+                    label: "Lebar Jalan"
+                  },
+                  {
+                    fieldName: "Aksesibilitas",
+                    label: "Aksesibilitas"
+                  },
+                  {
+                    fieldName: "Drainase",
+                    label: "Drainase"
+                  },
+                  {
+                    fieldName: "Utilitas",
+                    label: "Utilitas"
+                  },
+                  {
+                    fieldName: "Fasilitas",
+                    label: "Fasilitas"
+                  },
+                  {
+                    fieldName: "Zoning/ Peruntukan",
+                    label: "Zoning/ Peruntukan"
+                  },
+                  {
+                    fieldName: "Luas Bangunan",
+                    label: "Luas Bangunan"
+                  },
+                  {
+                    fieldName: "Jenis",
+                    label: "Jenis"
+                  },
+                  {
+                    fieldName: "Jumlah Lantai",
+                    label: "Jumlah Lantai"
+                  },
+                  {
+                    fieldName: "Tahun Pembuatan",
+                    label: "Tahun Pembuatan"
+                  },
+                  {
+                    fieldName: "Tahun Renovasi",
+                    label: "Tahun Renovasi"
+                  },
+                  {
+                    fieldName: "Konstruksi Atas",
+                    label: "Konstruksi Atas"
+                  },
+                  {
+                    fieldName: "Konstruksi Bawah",
+                    label: "Konstruksi Bawah"
+                  },
+                  {
+                    fieldName: "Atap",
+                    label: "Atap"
+                  },
+                  {
+                    fieldName: "Dinding",
+                    label: "Dinding"
+                  },
+                  {
+                    fieldName: "LangitLangit",
+                    label: "LangitLangit"
+                  },
+                  {
+                    fieldName: "Lantai",
+                    label: "Lantai"
+                  },
+                  {
+                    fieldName: "Pagar",
+                    label: "Pagar"
+                  },
+                  {
+                    fieldName: "Panjang Pagar",
+                    label: "Panjang Pagar (m)"
+                  },
+                  {
+                    fieldName: "Luas Carport",
+                    label: "Luas Carport"
+                  },
+                  {
+                    fieldName: "Pintu/ Jendela",
+                    label: "Pintu/ Jendela"
+                  },
+                  {
+                    fieldName: "Jumlah Fasilitas",
+                    label: "Jumlah Fasilitas"
+                  },
+                  {
+                    fieldName: "Keadaan Fisik Umumnya (BS/B/S/J/JS)",
+                    label: "Keadaan Fisik Umumnya (BS/B/S/J/JS)"
+                  },
+                  {
+                    fieldName: "Biaya Per m2 bangunan",
+                    label: "Biaya Per m2 bangunan"
+                  },
+                  {
+                    fieldName: "RCN (Biaya Pembuatan Bangunan Baru)",
+                    label: "RCN (Biaya Pembuatan Bangunan Baru)"
+                  },
+                  {
+                    fieldName: "Tahun Penilaian",
+                    label: "Tahun Penilaian"
+                  },
+                  {
+                    fieldName: "Umur Efektif",
+                    label: "Umur Efektif"
+                  },
+                  {
+                    fieldName: "Penyusutan",
+                    label: "Penyusutan"
+                  },
+                  {
+                    fieldName: "Nilai Bangunan",
+                    label: "Nilai Bangunan"
+                  },
+                  {
+                    fieldName: "Harga Penyesuaian Penawaran (Rp.)",
+                    label: "Harga Penyesuaian Penawaran (Rp.)"
+                  },
+                  {
+                    fieldName: "Nilai Bangunan (Rp.)",
+                    label: "Nilai Bangunan (Rp.)"
+                  },
+                  {
+                    fieldName: "Harga Tanah (Rp.)",
+                    label: "Harga Tanah (Rp.)"
+                  },
+                  {
+                    fieldName: "Penyesuaian Waktu",
+                    label: "Penyesuaian Waktu"
+                  },
+                  {
+                    fieldName: "Penyesuaian Status Kepemilikan",
+                    label: "Penyesuaian Status Kepemilikan"
+                  },
+                  {
+                    fieldName: "nilluas",
+                    label: "nilluas"
+                  },
+                  {
+                    fieldName: "nilai",
+                    label: "nilai"
+                  },
                 ]
               },
             ],
@@ -78,7 +325,8 @@
       //Insert SHP ZONA 2023
       const Zona2023=new GeoJSONLayer({
         url:"https://raw.githubusercontent.com/DutyKendartiwastra/ZNT2023/main/Zona_lonlat_2023.geojson",
-        //renderer:renderer_Zona2023
+        labelingInfo:labelClass,
+        renderer:renderer3
       });
       //Insert SHP Sample 2023
       const Sample023=new GeoJSONLayer({
